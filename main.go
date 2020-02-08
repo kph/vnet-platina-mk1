@@ -18,6 +18,7 @@ import (
 	"github.com/platinasystems/buildinfo"
 	"github.com/platinasystems/fe1"
 	fe1a "github.com/platinasystems/firmware-fe1a"
+	"github.com/platinasystems/log"
 	"github.com/platinasystems/redis"
 	vnetfe1 "github.com/platinasystems/vnet/devices/ethernet/switch/fe1"
 	yaml "gopkg.in/yaml.v2"
@@ -31,9 +32,11 @@ usage:	vnet-platina-mk1
 var ErrUsage = errors.New(usage[1:])
 
 func main() {
+	log.Printf("emerg", "in vnet-platina-mk1")
 	args := os.Args[1:]
 	assert := func(err error) {
 		if err != nil {
+			log.Printf("emerg", "vnet exiting with err %s", err)
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
